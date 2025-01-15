@@ -1,145 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agri Lease</title>
+  <link rel="icon" href="image/logo 2.jpeg">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="indexx.css">
+</head>
+
 <body>
-<h1>Servlet
-Examples with Code</h1>
-<p>This is a collection of examples which demonstrate some of the more
-frequently used parts of the Servlet API. Familiarity with the Java(tm)
-Programming Language is assumed.
-</p><p>These examples will only work when viewed via an http URL. They will
-not work if you are viewing these pages via a "file://..." URL. Please
-refer to the <i>README</i> file provide with this Tomcat release regarding
-how to configure and start the provided web server.
-</p><p>Wherever you see a form, enter some data and see how the servlet reacts.
-When playing with the Cookie and Session Examples, jump back to the Headers
-Example to see exactly what your browser is sending the server.
-</p><p>To navigate your way through the examples, the following icons will
-help:</p>
-<ul style="list-style-type: none; padding-left: 0;">
-<li><img src="images/execute.gif" alt=""> Execute the example</li>
-<li><img src="images/code.gif" alt=""> Look at the source code for the example</li>
-<li><img src="images/return.gif" alt=""> Return to this screen</li>
-</ul>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">AGRI LEASE</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="aboutus.php">About us</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Log in
+            </a>
+            <ul class="dropdown-menu">
+              <li> <a class="dropdown-item" href="LOGIN.php">User</a></li>
+              <li> <a class="dropdown-item" href="pages-login.php">Admin</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 
-<p>Tip: To see the cookie interactions with your browser, try turning on
-the "notify when setting a cookie" option in your browser preferences.
-This will let you see when a session is created and give some feedback
-when looking at the cookie demo.</p>
-<table style="width: 85%;">
-<tbody><tr>
-<td>Hello World</td>
+  <!-- Bootstrap Carousel -->
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <!-- Carousel Indicators -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
 
-<td style="width: 30%;"><a href="servlet/HelloWorldExample"><img src="images/execute.gif" alt=""></a><a href="servlet/HelloWorldExample">Execute</a></td>
+    <!-- Carousel Inner -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="image/slide1.jpg" class="d-block w-100" alt="Tractors">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Tractors</h5>
+          <p>Both John Deere 7R Series and John Deere 7R Series models available</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="image/slide2.jpg" class="d-block w-100" alt="Sprayers">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Sprayers</h5>
+          <p>Both John Deere R4038 Self-Propelled Sprayer and Apache AS1220 Plus Sprayer available</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="image/slide3.jpg" class="d-block w-100" alt="Harvesters">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Harvesters</h5>
+          <p>Both Case IH Axial-Flow 250 Series and New Holland CR Revelation Series available</p>
+        </div>
+      </div>
+    </div>
 
-<td style="width: 30%;"><a href="helloworld.html"><img src="images/code.gif" alt=""></a><a href="helloworld.html">Source</a></td>
-</tr>
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
-<tr>
-<td>Request Info</td>
+  <!-- PHP Section for Fetching Data from MySQL -->
+  <div class="row row-cols-1 row-cols-md-3 g-8" style="margin: 150px;">
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "tools";
 
-<td style="width: 30%;"><a href="servlet/RequestInfoExample"><img src="images/execute.gif" alt=""></a><a href="servlet/RequestInfoExample">Execute</a></td>
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Check connection
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+    }
 
-<td style="width: 30%;"><a href="reqinfo.html"><img src="images/code.gif" alt=""></a><a href="reqinfo.html">Source</a></td>
-</tr>
+    $sql = "SELECT * FROM `tools`";
+    $result = mysqli_query($conn, $sql);
 
-<tr>
-<td>Request Headers</td>
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+    ?>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="uploads/<?php echo $row['images']; ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h3 class="card-title"><?php echo $row['title']; ?></h3>
+              <h6 class="card-text"><?php echo $row['subtitle']; ?></h6>
+              <p><?php echo $row['overview']; ?></p>
+              <div class="col">
+                <a href="#" class="btn btn-success">Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    <?php
+      }
+    }
+    mysqli_close($conn);
+    ?>
+  </div>
 
-<td style="width: 30%;"><a href="servlet/RequestHeaderExample"><img src="images/execute.gif" alt=""></a><a href="servlet/RequestHeaderExample">Execute</a></td>
+  <!-- Footer Section -->
+  <div class="card" style="width: 18rem; margin-left: 600px;" align="center">
+    <div class="card-body">
+      <h5 class="card-title">Our Machinery</h5>
+      <p class="card-text">We supply different kinds of tractors and equipment for various agricultural needs.</p>
+      <a href="#" class="btn btn-primary">View Collection</a>
+    </div>
+  </div>
 
-<td style="width: 30%;"><a href="reqheaders.html"><img src="images/code.gif" alt=""></a><a href="reqheaders.html">Source</a></td>
-</tr>
+  <!-- Additional Sections -->
+  <!-- ... (Other sections remain unchanged) ... -->
 
-<tr>
-<td>Request Parameters</td>
-
-<td style="width: 30%;"><a href="servlet/RequestParamExample"><img src="images/execute.gif" alt=""></a><a href="servlet/RequestParamExample">Execute</a></td>
-
-<td style="width: 30%;"><a href="reqparams.html"><img src="images/code.gif" alt=""></a><a href="reqparams.html">Source</a></td>
-</tr>
-
-<tr>
-<td>Cookies</td>
-
-<td style="width: 30%;"><a href="servlet/CookieExample"><img src="images/execute.gif" alt=""></a><a href="servlet/CookieExample">Execute</a></td>
-
-<td style="width: 30%;"><a href="cookies.html"><img src="images/code.gif" alt=""></a><a href="cookies.html">Source</a></td>
-</tr>
-
-<tr>
-<td>Sessions</td>
-
-<td style="width: 30%;"><a href="servlet/SessionExample"><img src="images/execute.gif" alt=""></a><a href="servlet/SessionExample">Execute</a></td>
-
-<td style="width: 30%;"><a href="sessions.html"><img src="images/code.gif" alt=""></a><a href="sessions.html">Source</a></td>
-</tr>
-</tbody></table>
-
-<p>Note: The source code for these examples does not contain all of the
-source code that is actually in the example, only the important sections
-of code. Code not important to understand the example has been removed
-for clarity.</p>
-
-<h2>Other Examples</h2>
-<table style="width: 85%;">
-
-<tbody><tr>
-  <th colspan="3">Servlet 3.0 Asynchronous processing examples:</th>
-</tr>
-<tr>
-  <td>async0</td>
-  <td style="width: 30%;">
-    <a href="../async/async0"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>async1</td>
-  <td style="width: 30%;">
-    <a href="../async/async1"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>async2</td>
-  <td style="width: 30%;">
-    <a href="../async/async2"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>async3</td>
-  <td style="width: 30%;">
-    <a href="../async/async3"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>stockticker</td>
-  <td style="width: 30%;">
-    <a href="../async/stockticker"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-
-<tr>
-  <th colspan="3">Servlet 3.1 Non-blocking IO examples</th>
-</tr>
-<tr>
-  <td>Byte counter</td>
-  <td style="width: 30%;">
-    <a href="nonblocking/bytecounter.html"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>Number Writer</td>
-  <td style="width: 30%;">
-    <a href="nonblocking/numberwriter"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-
-</tbody></table>
-
-
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#carouselExampleCaptions').carousel();
+    });
+  </script>
 
 </body>
+
+</html>
+
