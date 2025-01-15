@@ -1,145 +1,112 @@
+<?php
+error_reporting(0);
+include "CONE.php";
+
+$statusMsg = '';
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['NAMES'];
+    $email = $_POST['EMAIL'];
+    $date = $_POST['DATE'];
+    $time = $_POST['TIME'];
+    $tool = $_POST['TOOL'];
+
+    $sql = "INSERT INTO `bookings`( `NAMES`, `EMAIL`, `DATE`, `TIME`, `TOOL`) VALUES ('$name','$email','$date','$time','$tool')";
+    $result = mysqli_query($link, $sql);
+
+    if ($result) {
+        $statusMsg = "Booking added successfully.";
+        header("location: dbbookings.php");
+        exit();
+    } else {
+        $statusMsg = "Booking addition failed. Error: " . mysqli_error($link);
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="booking.css">
+    <link rel="stylesheet" href="common.css">
+</head>
+
 <body>
-<h1>Servlet
-Examples with Code</h1>
-<p>This is a collection of examples which demonstrate some of the more
-frequently used parts of the Servlet API. Familiarity with the Java(tm)
-Programming Language is assumed.
-</p><p>These examples will only work when viewed via an http URL. They will
-not work if you are viewing these pages via a "file://..." URL. Please
-refer to the <i>README</i> file provide with this Tomcat release regarding
-how to configure and start the provided web server.
-</p><p>Wherever you see a form, enter some data and see how the servlet reacts.
-When playing with the Cookie and Session Examples, jump back to the Headers
-Example to see exactly what your browser is sending the server.
-</p><p>To navigate your way through the examples, the following icons will
-help:</p>
-<ul style="list-style-type: none; padding-left: 0;">
-<li><img src="images/execute.gif" alt=""> Execute the example</li>
-<li><img src="images/code.gif" alt=""> Look at the source code for the example</li>
-<li><img src="images/return.gif" alt=""> Return to this screen</li>
-</ul>
+    <nav class="navbar navbar-expand-lg bg-white">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">AGRI LEASE</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="aboutus.php">About us</a>
+          </li>
 
-<p>Tip: To see the cookie interactions with your browser, try turning on
-the "notify when setting a cookie" option in your browser preferences.
-This will let you see when a session is created and give some feedback
-when looking at the cookie demo.</p>
-<table style="width: 85%;">
-<tbody><tr>
-<td>Hello World</td>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Log in
+            </a>
+            <ul class="dropdown-menu">
+              <li> <a class="dropdown-item" href="LOGIN.php">User</a></li>
+              <li> <a class="dropdown-item" href="pages-login.php">Admin</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </nav>
 
-<td style="width: 30%;"><a href="servlet/HelloWorldExample"><img src="images/execute.gif" alt=""></a><a href="servlet/HelloWorldExample">Execute</a></td>
+    <header>
+        <h1>Booking Site</h1>
+    </header>
 
-<td style="width: 30%;"><a href="helloworld.html"><img src="images/code.gif" alt=""></a><a href="helloworld.html">Source</a></td>
-</tr>
+    <main>
+        <section id="booking-form">
+            <h2>Make a Reservation</h2>
+            <form id="reservation-form" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="NAMES" required>
 
-<tr>
-<td>Request Info</td>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="EMAIL" required>
 
-<td style="width: 30%;"><a href="servlet/RequestInfoExample"><img src="images/execute.gif" alt=""></a><a href="servlet/RequestInfoExample">Execute</a></td>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="DATE" required>
 
-<td style="width: 30%;"><a href="reqinfo.html"><img src="images/code.gif" alt=""></a><a href="reqinfo.html">Source</a></td>
-</tr>
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="TIME" required>
 
-<tr>
-<td>Request Headers</td>
+                <label for="tool">Tool:</label>
+                <input type="text" id="tool" name="TOOL" required>
 
-<td style="width: 30%;"><a href="servlet/RequestHeaderExample"><img src="images/execute.gif" alt=""></a><a href="servlet/RequestHeaderExample">Execute</a></td>
+                <button type="submit" name="submit" id="booking">Book Now</button>
+            </form>
+            <p><?php echo $statusMsg; ?></p>
+        </section>
+    </main>
 
-<td style="width: 30%;"><a href="reqheaders.html"><img src="images/code.gif" alt=""></a><a href="reqheaders.html">Source</a></td>
-</tr>
+    <footer>
+        <p>&copy; 2024 Booking Site</p>
+    </footer>
 
-<tr>
-<td>Request Parameters</td>
-
-<td style="width: 30%;"><a href="servlet/RequestParamExample"><img src="images/execute.gif" alt=""></a><a href="servlet/RequestParamExample">Execute</a></td>
-
-<td style="width: 30%;"><a href="reqparams.html"><img src="images/code.gif" alt=""></a><a href="reqparams.html">Source</a></td>
-</tr>
-
-<tr>
-<td>Cookies</td>
-
-<td style="width: 30%;"><a href="servlet/CookieExample"><img src="images/execute.gif" alt=""></a><a href="servlet/CookieExample">Execute</a></td>
-
-<td style="width: 30%;"><a href="cookies.html"><img src="images/code.gif" alt=""></a><a href="cookies.html">Source</a></td>
-</tr>
-
-<tr>
-<td>Sessions</td>
-
-<td style="width: 30%;"><a href="servlet/SessionExample"><img src="images/execute.gif" alt=""></a><a href="servlet/SessionExample">Execute</a></td>
-
-<td style="width: 30%;"><a href="sessions.html"><img src="images/code.gif" alt=""></a><a href="sessions.html">Source</a></td>
-</tr>
-</tbody></table>
-
-<p>Note: The source code for these examples does not contain all of the
-source code that is actually in the example, only the important sections
-of code. Code not important to understand the example has been removed
-for clarity.</p>
-
-<h2>Other Examples</h2>
-<table style="width: 85%;">
-
-<tbody><tr>
-  <th colspan="3">Servlet 3.0 Asynchronous processing examples:</th>
-</tr>
-<tr>
-  <td>async0</td>
-  <td style="width: 30%;">
-    <a href="../async/async0"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>async1</td>
-  <td style="width: 30%;">
-    <a href="../async/async1"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>async2</td>
-  <td style="width: 30%;">
-    <a href="../async/async2"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>async3</td>
-  <td style="width: 30%;">
-    <a href="../async/async3"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>stockticker</td>
-  <td style="width: 30%;">
-    <a href="../async/stockticker"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-
-<tr>
-  <th colspan="3">Servlet 3.1 Non-blocking IO examples</th>
-</tr>
-<tr>
-  <td>Byte counter</td>
-  <td style="width: 30%;">
-    <a href="nonblocking/bytecounter.html"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-<tr>
-  <td>Number Writer</td>
-  <td style="width: 30%;">
-    <a href="nonblocking/numberwriter"><img src="images/execute.gif" alt=""> Execute</a>
-  </td>
-  <td style="width: 30%;"></td>
-</tr>
-
-</tbody></table>
-
-
-
+    <script src="script.js"></script>
+    <script src="css/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#carouselExampleCaptions').carousel();
+        });
+    </script>
 </body>
+
+</html>
