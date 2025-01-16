@@ -1,112 +1,54 @@
-<?php
-error_reporting(0);
-include "CONE.php";
-
-$statusMsg = '';
-
-if (isset($_POST['submit'])) {
-    $name = $_POST['NAMES'];
-    $email = $_POST['EMAIL'];
-    $date = $_POST['DATE'];
-    $time = $_POST['TIME'];
-    $tool = $_POST['TOOL'];
-
-    $sql = "INSERT INTO `bookings`( `NAMES`, `EMAIL`, `DATE`, `TIME`, `TOOL`) VALUES ('$name','$email','$date','$time','$tool')";
-    $result = mysqli_query($link, $sql);
-
-    if ($result) {
-        $statusMsg = "Booking added successfully.";
-        header("location: dbbookings.php");
-        exit();
-    } else {
-        $statusMsg = "Booking addition failed. Error: " . mysqli_error($link);
-    }
-}
-?>
-
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookings</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="booking.css">
-    <link rel="stylesheet" href="common.css">
+    <title>NEW PAGE</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-white">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">AGRI LEASE</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarScroll">
-        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="aboutus.php">About us</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Log in
-            </a>
-            <ul class="dropdown-menu">
-              <li> <a class="dropdown-item" href="LOGIN.php">User</a></li>
-              <li> <a class="dropdown-item" href="pages-login.php">Admin</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-    </nav>
-
     <header>
-        <h1>Booking Site</h1>
+        <main>
+            <ul>
+                <li>
+                    <h1>Nature-related</h1>
+                </li>
+                <p> horizon
+                    meadow
+                    ripele
+                </p>
+                <li>
+                    <h2>Objects</h2>
+                </li>
+                <p>pens, pencil, books</p>
+                <p>tables, desk, etc</p>
+                <li>
+                    <h3>Names</h3>
+                </li>
+                <p> Andrew, Peter, John</p>
+
+            </ul>
+                </main>
     </header>
 
-    <main>
-        <section id="booking-form">
-            <h2>Make a Reservation</h2>
-            <form id="reservation-form" method="post">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="NAMES" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="EMAIL" required>
-
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="DATE" required>
-
-                <label for="time">Time:</label>
-                <input type="time" id="time" name="TIME" required>
-
-                <label for="tool">Tool:</label>
-                <input type="text" id="tool" name="TOOL" required>
-
-                <button type="submit" name="submit" id="booking">Book Now</button>
-            </form>
-            <p><?php echo $statusMsg; ?></p>
-        </section>
+<p><a href="https://x.com/elonmusk/status/1879531470886465545">this tweets</a></p>
+    <article>
+        <a href="index.html">index</a>
+    </article>
     </main>
+    <aside>
 
+    </aside>
     <footer>
-        <p>&copy; 2024 Booking Site</p>
+        Made by Manzi Ya Musana Ivan &copy; 2025 -<!--<a href="base.html">Names</a>-->
     </footer>
 
-    <script src="script.js"></script>
-    <script src="css/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#carouselExampleCaptions').carousel();
-        });
-    </script>
+
+
+
+
 </body>
 
 </html>
